@@ -1,19 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout Code') {
+        stage('Clone Repository') {
             steps {
-                git 'https://github.com/<your-repo>/selenium-jenkins-demo.git'
+                // Clone the Git repository
+                git url: 'https://github.com/siddharthadeymohori121/test_sel.git', branch: 'master'
             }
         }
-        stage('Install Dependencies') {
+        stage('Run Selenium Test') {
             steps {
-                sh 'pip install selenium'
-            }
-        }
-        stage('Run Tests') {
-            steps {
-                sh 'python test_login.py'
+                // Run the Python script
+                bat 'python test_login.py'
             }
         }
     }
